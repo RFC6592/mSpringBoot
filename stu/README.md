@@ -12,3 +12,8 @@
 + Oracle database
 ```
 ![alt text](https://github.com/RFC6592/mSpringBoot/blob/main/stu/REST-JPA-Main.png)
+
+
+```diff
+- INSERT INTO student (id, name, surname, dob, email) VALUES(1, 'Homer', 'Simpson', TO_DATE('1956/05/12', 'YYYY/MM/DD'), 'homr.simpson@student.hepl.be');
+```
