@@ -4,9 +4,8 @@ package be.hepl.stu.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -23,15 +22,17 @@ public class StudentController {
     // Cependant, dans notre cas on veut que ça soit @Service
     // Au lieu de : this.studentService = new StudentService();
 
-    private final StudentService studentService;
-
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    private StudentService studentService;
+
+    @GetMapping("/all")
+    public List<Student> getStudents() {
+        return studentService.getAllStudents();
     }
 
-    @GetMapping
-    public List<Student> getStudents() {
-        return studentService.getStudents();
+    @GetMapping("/add")
+    public void insertStudent(Student student)
+    {
+        studentService.save(student);
     }
 }

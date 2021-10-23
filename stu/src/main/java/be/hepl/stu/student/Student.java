@@ -1,20 +1,29 @@
 package be.hepl.stu.student;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="student")
 public class Student {
-    private Long id;
+
+    private Integer id;
+    @Column(name="name")
     private String name;
+    @Column(name="surname")
     private String surname;
+    @Column(name="age")
     private Integer age;
+    @Column(name="dob")
     private LocalDate dob;
+    @Column(name="email")
     private String email;
 
 
     public Student() {
     }
 
-    public Student(Long id, String name, String surname, Integer age, LocalDate dob, String email) {
+    public Student(Integer id, String name, String surname, Integer age, LocalDate dob, String email) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -31,8 +40,14 @@ public class Student {
         this.email = email;
     }
 
-    public Long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
